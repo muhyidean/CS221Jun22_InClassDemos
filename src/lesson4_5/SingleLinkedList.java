@@ -68,7 +68,7 @@ public class SingleLinkedList<E> {
 
     public void add(int index , E item){
             if(index<0 || index > size)
-                throw new ArrayIndexOutOfBoundsException();
+                throw new IndexOutOfBoundsException();
 
             if(index == 0)
                 addFirst(item);
@@ -84,6 +84,64 @@ public class SingleLinkedList<E> {
 
     public int size(){
             return this.size;
+    }
+
+
+    public E get(int index){
+            if(index < 0 || index >= size)
+                throw new IndexOutOfBoundsException();
+
+            Node<E> node = getNode(index);
+            return node.data;
+    }
+
+    public boolean removeItemB(E item){
+         if(head == null)
+             return false;
+
+         Node<E> current = head;
+         if(current.data.equals(item)){
+             removeFirst();
+             return true;
+         }
+         while(current.next != null){
+             if(item.equals(current.next.data)){
+                 removeAfter(current);
+                 return true;
+             }
+             current = current.next;
+         }
+
+         return false;
+
+    }
+
+    //Q1
+    // That will return type E
+    public E removeItem(E item){
+            // TODO add implementation
+            return null;
+    }
+    //Q2
+    //  That will delete all occurrences and return true
+    public void removeAllItem(E item){
+        // TODO add implementation
+     }
+
+    //Q3
+    public E remove(int index){
+        // TODO add implementation
+        return null;
+    }
+
+
+
+    public void traverse(){
+            Node<E> current = head;
+            while(current != null){
+                // write your implementation here
+                current = current.next;
+            }
     }
 
 
