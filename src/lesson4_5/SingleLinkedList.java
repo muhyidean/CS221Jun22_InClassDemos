@@ -1,11 +1,35 @@
 package lesson4_5;
 
-public class SingleLinkedList<E> {
+import java.util.Iterator;
+
+public class SingleLinkedList<E> implements Iterable<E>{
 
     private Node<E> head = null;
     private int size = 0;
 
-        private static class Node<E>{
+    @Override
+    public Iterator<E> iterator() {
+        return new MyIterator<>();
+    }
+
+
+    class MyIterator<E> implements Iterator<E>{
+        public Node<E> current = (Node<E>) head;
+
+        @Override
+        public boolean hasNext() {
+            return (current != null);
+        }
+
+        @Override
+        public E next() {
+            E item = current.data;
+            current = current.next;
+            return item;
+        }
+    }
+
+    private static class Node<E>{
 
             private E data;
             private Node<E> next;
@@ -119,19 +143,64 @@ public class SingleLinkedList<E> {
     //Q1
     // That will return type E
     public E removeItem(E item){
-            // TODO add implementation
+        if(head == null){
             return null;
+        }
+        Node<E> current = head;
+        if (item.equals(current.data)){
+            return removeFirst();
+        }
+        while(current.next != null){
+            if(item.equals(current.next.data)){
+                return removeAfter(current);
+            }
+            current = current.next;
+        }
+        return null;
     }
     //Q2
     //  That will delete all occurrences and return true
     public void removeAllItem(E item){
-        // TODO add implementation
+        if(head == null){
+            return;
+        }
+        Node<E> current = head;
+        if (item.equals(current.data))
+            removeFirst();
+
+        while(current.next != null){
+            if(item.equals(current.next.data)){
+                if (item.equals(current.data))
+                    removeFirst();
+                else
+                    removeAfter(current);
+            }
+            current = current.next;
+        }
      }
 
     //Q3
     public E remove(int index){
-        // TODO add implementation
-        return null;
+        if(index < 0 || index >= size)
+            throw new IndexOutOfBoundsException();
+
+        if(head ==null)
+            return null;
+
+        Node<E> current = head;
+        if(index == 0){
+            return removeFirst();
+        }
+        else{
+            int i = 0;
+            while(current.next != null){
+                if(getNode(index).data == current.next.data){
+                    return removeAfter(current);
+                }
+                current = current.next;
+            }
+            return null;
+        }
     }
 
 
