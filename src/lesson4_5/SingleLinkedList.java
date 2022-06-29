@@ -1,8 +1,11 @@
 package lesson4_5;
 
+import lesson7.MyStack;
+
+import java.util.EmptyStackException;
 import java.util.Iterator;
 
-public class SingleLinkedList<E> implements Iterable<E>{
+public class SingleLinkedList<E> implements MyStack<E>, Iterable<E>{
 
     private Node<E> head = null;
     private int size = 0;
@@ -104,6 +107,34 @@ public class SingleLinkedList<E> implements Iterable<E>{
 
     public void add(E item){
             add(size, item);
+    }
+
+    @Override
+    public E push(E obj) {
+        addFirst(obj);
+        return head.data;
+    }
+
+    @Override
+    public E peek() {
+        if(isEmpty())
+            throw new EmptyStackException();
+        return head.data;
+    }
+
+    @Override
+    public E pop() {
+        if(isEmpty())
+            throw new EmptyStackException();
+
+        E hand = head.data;
+        removeFirst();
+        return hand;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return head == null;
     }
 
     public int size(){

@@ -94,7 +94,15 @@ public class MyArrayList<E> {
     }
 
 
-
+    public void removeAllOf(E target) {
+        // TODO write your implementation here ...
+        for (int i = 0; i < size; i++) {
+            if (arr[i].equals(target)) {
+                remove(i);
+                i--;
+            }
+        }
+    }
 
 
 

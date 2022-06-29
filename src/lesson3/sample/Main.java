@@ -9,25 +9,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MyArrayList<String> names = new MyArrayList<>();
-
         MyArrayList<Integer> nums = new MyArrayList<>();
-        nums.add(55);
+        nums.add(4);
+        nums.add(4);
+        nums.add(4);
+        nums.add(4);
+        nums.add(4);
 
 
-        names.add("Dean");
-        names.add("Berhe");
-        names.add(1,"Le");
-        System.out.println( names);
-        names.set(1,"Yasmeen");
-        names.remove(2);
+        nums.removeAllOf(4);
+        System.out.println(nums.size());
 
 
-        System.out.println( names);
-//        System.out.println("Old Value " +oldValue);
-
-        System.out.println("===");
-        System.out.println(names.size());
 
 
 

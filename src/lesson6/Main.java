@@ -10,6 +10,7 @@ public class Main {
 
         List<Integer> nums = new LinkedList<>(Arrays.asList(2,6,5,4));
 
+        Iterator<Integer> iter = nums.listIterator(2);
 
         Collections.sort(nums);
 
@@ -39,7 +40,7 @@ public class Main {
         myNums.add(5);
         myNums.add(6);
 
-        
+
 
 //
 //        Iterator<Integer> iter = myNums.iterator();
